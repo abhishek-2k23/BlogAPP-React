@@ -5,7 +5,6 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import pic from "../assets/pic.jpg";
 
 //login function
 const Login = () => {
