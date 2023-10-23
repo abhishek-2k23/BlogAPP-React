@@ -1,17 +1,30 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../pages/Loading';
 
 const Menu = ({cat}) => {
-    const [posts, setPost] = useState([]);
+    const [posts, setPosts] = useState([]);
+    console.log(typeof(posts));
+    const [loading,setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     //to fetch the posts
   useEffect(() =>{
     const fetchPosts = async () =>{
       try{
-        const res = await axios.get(`/post/?cat=${cat}`);
-        setPost(res.data);
+        setLoading(true);
+
+        //fetching and setting the post to state
+        const res = await axios.get(`${process.env.REACT_APP_BackEndURL}/post/?cat=${cat}`);
+        setPosts(res.data.data);
+
+        //loading will set to false after 1sec
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+
       }catch(err){
         console.log(err);
       }
@@ -25,13 +38,14 @@ const Menu = ({cat}) => {
       <div className='w-full flex flex-col gap-5'>
         {/* Heading */}
         <h1 className='text-xl font-bold text-center'>Other Posts You May Like</h1>
-
+        {console.log(typeof(posts))}
         {
+          loading ? <Loading></Loading> :
           posts.map((post) => (
-            <div className='flex flex-col my-3 gap-2 overflow-auto' key={post.id}>
+            <div className='flex flex-col my-3 gap-2 overflow-auto' key={post._id}>
               {/* image */}
               <div>
-                <img src={`../uploads/${post?.img}`} alt="pic" />
+                <img src={post?.img} alt="pic" />
               </div>
               {/* title */}
               <div className='text-xl font-bold'>

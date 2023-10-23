@@ -16,8 +16,8 @@ const Home = () => {
         setLoading(true);
         console.log("cat", cat);
         const res = await axios.get(`${process.env.REACT_APP_BackEndURL}/post${cat}`);
-        console.log("res : ",res.data)
-        setPost(res.data);
+        console.log("res : ",res)
+        setPost(res.data.data);
         postRef.current = res.data;
         setLoading(false);
       } catch (err) {
@@ -40,8 +40,9 @@ const Home = () => {
         </div>
       ) : (
         <div className={`lg:w-10/12 px-2 md:px-0  space-y-12 flex flex-col h-auto min-h-[75vh] `}>
+          {console.log(post)}
           {post && post.map((post) => (
-            <PostDesign post={post} key={post.id}></PostDesign>
+            <PostDesign post={post} key={post._id}></PostDesign>
           ))}
         </div>
       )}

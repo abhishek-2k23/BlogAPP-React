@@ -17,7 +17,7 @@ const PostDesign = ({ post }) => {
 
         {/* post title */}
         <div className="mb-2" >
-          <Link to={`/post/${post.id}`}>
+          <Link to={`/post/${post._id}`}>
           <h1 className="lg:text-2xl text-lg font-bold capitalize">{post.title}</h1></Link>
         </div>
 
@@ -28,14 +28,14 @@ const PostDesign = ({ post }) => {
 
         {/* button */}
         <div className="mt-5 mb-3 lg:mb-0">
-          <button className="p-2 border border-green-400 text-green-500 hover:bg-green-400 hover:text-white hover:border-gray-200" onClick={() => {navigate(`/post/${post.id}`)}}>Read More</button>
+          <button className="p-2 border border-green-400 text-green-500 hover:bg-green-400 hover:text-white hover:border-gray-200" onClick={() => {navigate(`/post/${post._id}`)}}>Read More</button>
         </div>
       </div>
 
         {/* image */}
       <div className={`lg:w-4/12 flex justify-center ${post.img ? "items-stretch" : "items-center"} order-1 lg:order-2`}>
         {
-          post.img ? <img src={`../uploads/${post?.img}`} alt="pic" width={"100%"}  className="shadow-xl border-green-300 object-cover"/> : <p>No image</p>
+          !(post.img === " ") ? <img src={`${post?.img}`} alt="pic" width={"100%"}  className="shadow-xl border-green-300 object-cover"/> : <p>No image</p>
         }
       </div>
     </div>

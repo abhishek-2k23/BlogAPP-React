@@ -26,8 +26,10 @@ const Singal = () => {
       try {
         setLoading(true);
         const res = await axios.get(`${process.env.REACT_APP_BackEndURL}/post/${postId}`);
-        setPost(res.data);
-        setLoading(false);
+        setPost(res.data.data);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
 
       } catch (err) {
         console.log(err);
@@ -38,15 +40,15 @@ const Singal = () => {
   }, [postId]);
 
   //to set HTML content in the UI
-  const htmlDesc = DOMPurify.sanitize(post[0]?.desc);
+  const htmlDesc = DOMPurify.sanitize(post?.desc);
   console.log("Post : ", post);
 
   //to delete the posts
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(`/post/${postId}`);
+      const res = await axios.delete(`${process.env.REACT_APP_BackEndURL}/post/${postId}`);
       console.log(res);
-      toast.success(res.data);
+      toast.success("Deleted successfully");
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -60,26 +62,26 @@ const Singal = () => {
             <div className="basis-3/4">
               {/* image */}
               <div className=''>
-                <img src={`../uploads/${post[0]?.postImg}`} alt="img" className="md:min-h-60  max-h-72 w-full object-cover"/>
+                <img src={`${post?.img}`} alt="postImage" className="md:min-h-60  max-h-72 w-full object-cover"/>
               </div>
               {/* user */}
               <div className="flex items-center gap-3 my-5 capitalize">  
-                  <div className="w-10 h-10 flex justify-center items-center rounded-full border border-green-400 text-5xl ">
+                  <div className="w-10 h-10 flex justify-center items-center text-5xl ">
                     <PiUserCircleDuotone></PiUserCircleDuotone>
                   </div>
                   <div>
-                    <p className="text-base font-semibold font-mono">{post[0]?.name}</p>
-                    <p className="italic underline text-sm">Posted {moment(post[0]?.date).fromNow()}</p>
+                    <p className="text-base font-semibold font-mono">{post?.name}</p>
+                    <p className="italic underline text-sm">Posted {moment(post?.date).fromNow()}</p>
                   </div>
                   {
-                    post[0]?.name === currentUser?.name &&
+                    post?.name === currentUser?.name &&
                   
                   <div className="flex gap-1">
                   <span className="order-2 rounded-full border border-red-400 w-7 h-7 flex justify-center items-center text-red-400 hover:text-white hover:bg-red-500 ">
                     <MdDeleteForever className=" text-xl" onClick={handleDelete}></MdDeleteForever>
                   </span>
                   <span className="rounded-full border border-green-400 w-7 h-7 flex justify-center items-center text-green-400 hover:text-white hover:bg-green-500 ">
-                    <Link to={`/write?edit=${post[0]?.id}`} state ={post[0]}>
+                    <Link to={`/write?edit=${post?._id}`} state ={post}>
                     <BiEdit className="text-xl "></BiEdit></Link>
                   </span>
                   </div>
@@ -90,16 +92,17 @@ const Singal = () => {
                 {/* content */}
                 <div className="capitalize text-lg md:text-2xl font-bold">
                   {/* title */}
-                  <h1>{post[0]?.title}</h1>
+                  <h1>{post?.title}</h1>
                 </div>
                 <div className="leading-8 text-justify text-base text-gray-700 mt-5 md:text-xl">
                   {/* description */}
-                  {/* <p>{post[0]?.desc}</p> */}
+                  {/* <p>{post?.desc}</p> */}
                   <div dangerouslySetInnerHTML={{ __html: htmlDesc }} />
                 </div>
               </div>
             </div>
-            <div className="basis-1/4 w-full"><Menu cat={post[0]?.cat}></Menu></div>
+            <div className="basis-1/4 w-full"><Menu cat={post?.cat}></Menu></div>
+            {/* {console.log(post.category)} */}
           </div>
     )
     }

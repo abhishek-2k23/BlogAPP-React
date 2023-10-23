@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
-import moment from "moment";
+// import moment from "moment";
 import { useLocation, useNavigate } from "react-router-dom";
+import {toast} from "react-hot-toast";
 
 const Write = () => {
   const state = useLocation().state;
@@ -18,36 +19,49 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post(`${process.env.REACT_APP_BackEndURL}/upload`, formData);
+      const res = await axios.post(`${process.env.REACT_APP_BackEndURL}/post/upload`, formData);
       console.log(res);
-      return res.data;
+      return res.data.data;
     } catch (err) {
-      console.log("Error during fileUpload : ", err.message);
+      console.log("Error during fileUpload : ", err);
     }
   };
+  let toastnew;
   //sending the new blog
   const handleClick = async (e) => {
     e.preventDefault();
     try {
+      // eslint-disable-next-line no-lone-blocks
+      {
+        state ?
+        toastnew = toast.loading("Upadating your blog...") : 
+        toastnew = toast.loading("Posting your blog...")
+      }
       const imgUrl = await upload();
       state
-        ? await axios.put(`${process.env.REACT_APP_BackEndURL}/post/${state.id}`, {
+        ? await axios.put(`${process.env.REACT_APP_BackEndURL}/post/${state._id}`, {
             title,
             desc: value,
             cat,
-            img: file ? imgUrl : "",
+            img: file ? imgUrl : state.img,
+            token : localStorage.getItem('user'),
           })
         : await axios.post(`${process.env.REACT_APP_BackEndURL}/post/addPost`, {
             title,
             desc: value,
             cat,
             img: file ? imgUrl : " ",
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+            token : localStorage.getItem('user'),
+            // date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
           });
-
+      toast.dismiss(toastnew);
+      toast.success("Posted successfully.");
       navigate("/");
     } catch (error) {
+      toast.dismiss(toastnew);
+
       console.log(error);
+      toast.error("Error in posting. Try again");
     }
   };
   return (

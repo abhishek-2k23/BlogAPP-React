@@ -45,7 +45,7 @@ const router = createBrowserRouter([
 ])
 function App() {
   return (
-    <div className=" h-auto overflow-x-hidden filter backdrop:blur-md ">
+    <div className=" h-auto overflow-x-hidden filter backdrop:blur-md">
       <RouterProvider router = {router}></RouterProvider>
     </div>
   );

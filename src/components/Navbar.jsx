@@ -64,7 +64,7 @@ const Navbar = () => {
         <div className="md:flex hidden gap-4 justify-center normal-case items-center">
           {loginStatus && (
             <span>
-              {currentUser?.name}
+              {(currentUser?.name).split(" ")[0]}
             </span>
           )}
           {loginStatus && (
