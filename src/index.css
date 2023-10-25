@@ -49,25 +49,33 @@ code {
   background-image: url('./assets/background.jpg');
   object-fit: contain;
   background-size: cover;
-  background-position-y: top;
+  background-position-y: center center;
   
 }
 .containerforLogin{
   backdrop-filter: blur(5px);
   background: rgba(255,255,255,0.2);
 }
-input{
+.containerforLogin input{
+  display: block;
   padding-right: 50px;
     height: 50px;
-    width: 200px;
-    background-color: rgba(255,255,255,0.09);
+    width: 250px;
+    /* background-color: rgba(255,255,255,0.09); */
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
-    color: white;
+    /* color: rgb(34, 185, 57); */
+    letter-spacing: 1.5px;
+    font-size: 16px;
+    font-weight: 500;
 }
+
 input::placeholder{
-    color: #e5e5e5;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 16px;
+    font-style: 700;
 }

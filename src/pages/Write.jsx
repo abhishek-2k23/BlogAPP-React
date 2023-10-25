@@ -17,15 +17,23 @@ const Write = () => {
   //to handle the image upload
   const upload = async () => {
     try {
+      //create an object of FormData
       const formData = new FormData();
+
+      //append the uploaded file
       formData.append("file", file);
+
+      //upload the uploaded file to the cloudinary
       const res = await axios.post(`${process.env.REACT_APP_BackEndURL}/post/upload`, formData);
-      console.log(res);
-      return res.data.data;
+      console.log("Image upload : ",res);
+
+      // return the url 
+      return res.data.img;
     } catch (err) {
       console.log("Error during fileUpload : ", err);
     }
   };
+
   let toastnew;
   //sending the new blog
   const handleClick = async (e) => {
@@ -70,12 +78,13 @@ const Write = () => {
         <div className="content-writing md:w-9/12 w-auto ">
           <input
             type="text"
-            placeholder="Title"
+            placeholder="title"
             className="mb-4 w-full border border-gray-400 py-2 focus:outline-none"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <div className="contailer ">
+          {/* <input type="text" placeholder="title"/> */}
+          <div className="container ">
             <ReactQuill
               theme="snow"
               value={value}
@@ -102,10 +111,13 @@ const Write = () => {
               style={{ display: "none" }}
               onChange={(e) => setFile(e.target.files[0])}
             />
+            {
+            file ? 
+            <p>{file.name}</p> : 
             <label htmlFor="file" className="underline italic text-sm">
               Image Upload
             </label>
-
+            }
             <div className="flex justify-between mt-2">
               {/* <button className="p-1.5 bg-green-300 rounded-sm focus:outline-none">
                 Save as a draft

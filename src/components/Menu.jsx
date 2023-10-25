@@ -53,7 +53,7 @@ const Menu = ({cat}) => {
               </div>
               {/* button */}
               <div className="mt-2 mb-3 md:mb-0">
-          <button className="p-2 border border-green-400 transition-all duration-300 text-green-500 hover:bg-green-400 hover:text-black hover:border-gray-200" onClick={() => navigate(`/post/${post?.id}`)}>Read More</button>
+          <button className="p-2 border border-green-400 transition-all duration-300 text-green-500 hover:bg-green-400 hover:text-black hover:border-gray-200" onClick={() => navigate(`${process.env.REACT_APP_BackEndURL}/post/${post?._id}`)}>Read More</button>
         </div>
             </div>
           ))
