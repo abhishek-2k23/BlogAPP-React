@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -18,7 +18,7 @@ const Login = () => {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
 
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   //form submit handler
   async function submitHandler(loginData) {
@@ -56,10 +56,10 @@ const Login = () => {
       //any error
       console.log(error);
       if (error.response.status === 500) {
-        setError("server error.");
+        // setError("server error.");
         toast.error("server error");
       } else {
-        setError(error.response.data.message);
+        // setError(error.response.data.message);
         toast.error(error.response.data.message);
       }
     }
