@@ -17,7 +17,7 @@ const PostDesign = ({ post }) => {
 
         {/* post title */}
         <div className="mb-2" >
-          <Link to={`/post/${post._id}`}>
+          <Link to={`post/${post._id}`}>
           <h1 className="lg:text-2xl text-lg font-bold capitalize">{post.title}</h1></Link>
         </div>
 

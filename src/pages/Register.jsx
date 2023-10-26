@@ -12,17 +12,17 @@ const Register = () => {
   const navigate = useNavigate();
 
   async function submitHandler(RegisterData) {
-    console.log(RegisterData);
+    // console.log(RegisterData);
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BackEndURL}/auth/register`,
+      await axios.post(
+        `${process.env.REACT_APP_BackEndURL}auth/register`,
         RegisterData
       );
-      console.log("response", res);
+      // console.log("response", res);
       navigate("/login");
       toast.success("You are registered.");
     } catch (err) {
-      console.log("error", err);
+      // console.log("error", err);
       setError(err.response.data.message);
     }
   }

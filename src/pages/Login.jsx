@@ -26,13 +26,13 @@ const Login = () => {
     try {
       toastId = toast.loading("login in progress...");
       const res = await axios.post(
-        `${process.env.REACT_APP_BackEndURL}/auth/login`,
+        `${process.env.REACT_APP_BackEndURL}auth/login`,
         loginData
       );
 
       //set current user on the localstorage
-      console.log("login user details : ",res.data);
-      console.log(res.data.other)
+      // console.log("login user details : ",res.data);
+      // console.log(res.data.other)
 
       setCurrentUser(res.data.other);
 
@@ -54,7 +54,7 @@ const Login = () => {
     } catch (error) {
       toast.dismiss(toastId);
       //any error
-      console.log(error);
+      // console.log(error);
       if (error.response.status === 500) {
         // setError("server error.");
         toast.error("server error");

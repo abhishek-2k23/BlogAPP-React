@@ -25,12 +25,12 @@ const Singal = () => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`${process.env.REACT_APP_BackEndURL}/post/${postId}`);
+        const res = await axios.get(`${process.env.REACT_APP_BackEndURL}post/${postId}`);
         setPost(res.data.data);
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
-
+        // setTimeout(() => {
+        //   setLoading(false);
+        // }, 100);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -41,12 +41,12 @@ const Singal = () => {
 
   //to set HTML content in the UI
   const htmlDesc = DOMPurify.sanitize(post?.desc);
-  console.log("Post : ", post);
+  // console.log("Post : ", post);
 
   //to delete the posts
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(`${process.env.REACT_APP_BackEndURL}/post/${postId}`);
+      const res = await axios.delete(`${process.env.REACT_APP_BackEndURL}post/${postId}`);
       console.log(res);
       toast.success("Deleted successfully");
       navigate("/");

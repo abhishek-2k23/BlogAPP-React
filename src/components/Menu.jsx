@@ -5,7 +5,7 @@ import Loading from '../pages/Loading';
 
 const Menu = ({cat}) => {
     const [posts, setPosts] = useState([]);
-    console.log(typeof(posts));
+    // console.log(typeof(posts));
     const [loading,setLoading] = useState(false);
 
     const navigate = useNavigate();
@@ -17,14 +17,15 @@ const Menu = ({cat}) => {
         setLoading(true);
 
         //fetching and setting the post to state
-        const res = await axios.get(`${process.env.REACT_APP_BackEndURL}/post/?cat=${cat}`);
+        const res = await axios.get(`${process.env.REACT_APP_BackEndURL}post/?cat=${cat}`);
         setPosts(res.data.data);
 
         //loading will set to false after 1sec
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
-
+        // setTimeout(() => {
+        //   setLoading(false);
+        // }, 1000);
+        setLoading(false);
+        
       }catch(err){
         console.log(err);
       }
@@ -32,13 +33,13 @@ const Menu = ({cat}) => {
     fetchPosts();
   },[cat]);
 
-  console.log("Posts : ",posts)
+  // console.log("Posts : ",posts)
   return (
     <div className='md:flex hidden justify-center'>
       <div className='w-full flex flex-col gap-5'>
         {/* Heading */}
         <h1 className='text-xl font-bold text-center'>Other Posts You May Like</h1>
-        {console.log(typeof(posts))}
+        {/* {console.log(typeof(posts))} */}
         {
           loading ? <Loading></Loading> :
           posts.map((post) => (

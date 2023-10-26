@@ -24,8 +24,8 @@ const Write = () => {
       formData.append("file", file);
 
       //upload the uploaded file to the cloudinary
-      const res = await axios.post(`${process.env.REACT_APP_BackEndURL}/post/upload`, formData);
-      console.log("Image upload : ",res);
+      const res = await axios.post(`${process.env.REACT_APP_BackEndURL}post/upload`, formData);
+      // console.log("Image upload : ",res);
 
       // return the url 
       return res.data.img;
@@ -47,14 +47,14 @@ const Write = () => {
       }
       const imgUrl = await upload();
       state
-        ? await axios.put(`${process.env.REACT_APP_BackEndURL}/post/${state._id}`, {
+        ? await axios.put(`${process.env.REACT_APP_BackEndURL}post/${state._id}`, {
             title,
             desc: value,
             cat,
             img: file ? imgUrl : state.img,
             token : localStorage.getItem('user'),
           })
-        : await axios.post(`${process.env.REACT_APP_BackEndURL}/post/addPost`, {
+        : await axios.post(`${process.env.REACT_APP_BackEndURL}post/addPost`, {
             title,
             desc: value,
             cat,
@@ -68,7 +68,7 @@ const Write = () => {
     } catch (error) {
       toast.dismiss(toastnew);
 
-      console.log(error);
+      // console.log(error);
       toast.error("Error in posting. Try again");
     }
   };

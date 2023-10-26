@@ -12,7 +12,7 @@ const Navbar = () => {
     let handler = (e) =>{
       if(!navRef.current.contains(e.target)){
         setSnav(false);
-        console.log(Snav);
+        // console.log(Snav);
       }
     }
     document.addEventListener("mousedown",handler);

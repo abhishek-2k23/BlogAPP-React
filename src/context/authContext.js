@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     try{
-    await axios.post(`${process.env.REACT_APP_BackEndURL}/auth/logout`);
+    await axios.post(`${process.env.REACT_APP_BackEndURL}auth/logout`);
     setLoginStatus(false);
     sessionStorage.removeItem("loginStatusInfo");
     setCurrentUser(null);
