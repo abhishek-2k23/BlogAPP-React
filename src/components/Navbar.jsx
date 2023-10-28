@@ -1,6 +1,6 @@
 import React, { useContext, useEffect,useRef } from "react";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import {HiMenu} from "react-icons/hi";
 import {toast }from 'react-hot-toast'
@@ -8,6 +8,9 @@ import {toast }from 'react-hot-toast'
 const Navbar = () => {
   const {logout,loginStatus, setLoginStatus,currentUser,Snav,setSnav} = useContext(AuthContext);
   const navRef = useRef();
+
+  const navigate = useNavigate();
+
   useEffect(() =>{
     let handler = (e) =>{
       if(!navRef.current.contains(e.target)){
@@ -30,7 +33,7 @@ const Navbar = () => {
   
   return (
     <div className="w-screen flex justify-center px-1 relative ">
-      <div className="h-auto lg:w-10/12 sm:w-12/12 w-full flex justify-between items-center m-0 shadow-md pr-3">
+      <div className="h-auto lg:w-10/12 sm:w-12/12 w-full flex justify-between items-center m-0 shadow-sm pr-3">
 
         {/* logo */}
         <div className="logo lg:w-24 w-20  "> 
@@ -39,7 +42,7 @@ const Navbar = () => {
         </div>
 
         {/* links for  large screens  */}
-        <div className="links md:flex hidden justify-center lg:gap-7 gap-4 text-sm capitalize w-1/2 md:w-auto lg:uppercase items-center " >
+        <div className="links md:flex hidden justify-center lg:gap-7 gap-4 text-sm capitalize w-1/2 md:w-auto lg:uppercase items-center tracking-wide" >
           <Link to="/?cat=art">
             <p>ART</p>
           </Link>
@@ -63,30 +66,31 @@ const Navbar = () => {
         {/*  menu  for large screens */}
         <div className="md:flex hidden gap-4 justify-center normal-case items-center">
           {loginStatus && (
-            <span>
+            <span className="font-medium tracking-wider font-mono">
               {(currentUser?.name).split(" ")[0]}
             </span>
           )}
           {loginStatus && (
             <span onClick={() =>{logout();
-              toast.success("logged out");}}>
+              toast.success("logged out");}} className="border border-green-400 px-5 py-2 rounded-md hover:bg-green-400  hover:text-white cursor-pointer hover:border-gray-300">
                 Logout
             </span>
           )}
           
           {!loginStatus && (
-            <span>
-              <Link to="/login">
-                <p>
+            <span onClick={() => {navigate("/login")}} className="border border-green-400 px-5 py-2 rounded-md hover:bg-green-400  hover:text-white cursor-pointer hover:border-gray-300">
+              
+                <p className="tracking-wider font-semibold font-mono">
                   Login
                 </p>
-              </Link>
             </span>
           )}
 
           {!loginStatus && (
-            <span>
-              <Link to="/register">Register</Link>
+            <span onClick={() => {navigate("/register")}} className="border border-green-400 px-5 py-2 rounded-md hover:bg-green-400  hover:text-white cursor-pointer">
+                <p className="tracking-wider font-semibold font-mono">
+                  Register
+                </p>
             </span>
           )}
 

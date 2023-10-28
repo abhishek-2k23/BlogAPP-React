@@ -46,7 +46,7 @@ code {
 }
 
 .forLogin{
-  background-image: url('./assets/background.jpg');
+  background-image: url('https://res.cloudinary.com/daamrpzus/image/upload/v1698322685/BlogAppAssets/zaorfz4driuyq29mjfle.jpg');
   object-fit: contain;
   background-size: cover;
   background-position-y: center center;
