@@ -4,7 +4,7 @@ function PostShimmer() {
   return (
     
 <div class="border border-gray-200 shadow rounded-xl p-4  w-full mx-auto">
-  <div class="animate-pulse flex flex-col md:flex-row space-x-16 ">
+  <div class="animate-pulse flex flex-col md:flex-row space-x-16 gap-4 sm:gap-0">
     <div class="flex-2 sm:flex-1 space-y-6 py-1">
       <div class="h-2 bg-slate-200 rounded"></div>
         
@@ -15,7 +15,7 @@ function PostShimmer() {
             <div className='w-[60%] h-2 rounded-full bg-slate-200'></div>
             <div className='w-[75%] h-2 rounded-full bg-slate-200'></div>
         </div>
-      <div className='w-1/2 sm:w-1/5 h-10 sm:h-14 rounded-xl border-gray-800 bg-slate-200'> </div>
+      <div className='w-11/12 sm:w-1/5 h-10 sm:h-14 rounded-xl border-gray-800 bg-slate-200'> </div>
     </div>
 
     
