@@ -10,6 +10,7 @@ import DOMPurify from "dompurify";
 import {toast} from "react-hot-toast";
 import moment from "moment";
 import {AuthContext} from "../context/authContext";
+import SinglePostShimmer from "../components/ShimmerUi/SinglePostShimmer";
 
 const Singal = () => {
   const [post, setPost] = useState({});
@@ -57,7 +58,7 @@ const Singal = () => {
   return (
     <div className="flex  justify-center min-h-screen mt-5">
       {
-        loading ? (<Loading></Loading>) : (
+        loading ? (<SinglePostShimmer />) : (
           <div className="md:w-10/12 px-2 md:px-0  flex gap-10 flex-col md:flex-row">
             <div className="basis-3/4">
               {/* image */}
