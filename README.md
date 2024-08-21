@@ -1,6 +1,6 @@
 # BlogApp
 
-[![Vercel](https://img.shields.io/badge/Hosted_on-Vercel-brightgreen)](https://your-live-url.vercel.app)
+[![Vercel](https://img.shields.io/badge/Hosted_on-Vercel-brightgreen)](https://blog-app-react-2k23.vercel.app/)
 
 ## Overview
 
@@ -44,16 +44,30 @@
 - Backend: Render.com
 
 ## Screenshots
+
+**Login Page**
 ![Image pic](./src/assets/screenshots/login%20page.png "login page")
+
+**Registration Page**
 ![Image pic](./src/assets/screenshots/registration%20page.png "Registration page")
+
+**Home page loading UI**
 ![Image pic](./src/assets/screenshots/Loading%20page.png "Home page loading")
+
+**Home page with blogs data**
 ![Image pic](./src/assets/screenshots/Home%20page.png "Home page")
+
+**Single Post Loading UI**
 ![Image pic](./src/assets/screenshots/SinglePost%20Loading%20s.png "singal post loading page")
+
+**Single Post Page**
 ![Image pic](./src/assets/screenshots/single%20post%20page.png "singal post page")
+
+**Blog Write Page**
 ![Image pic](./src/assets/screenshots/blog%20writing.png "blog write page")
 
 ## Live URL
-**Live URL : **
+**Live URL :**
 https://blog-app-react-2k23.vercel.app/
 
 ## Installation
