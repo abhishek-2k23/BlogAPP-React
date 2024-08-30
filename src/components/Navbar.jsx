@@ -4,6 +4,8 @@ import { Link,useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import {HiMenu} from "react-icons/hi";
 import {toast }from 'react-hot-toast'
+import { useSelector, useDispatch } from "react-redux";
+import { setShowSlider } from "../redux/slices/nav.slice";
 
 const Navbar = () => {
   const {logout,loginStatus, setLoginStatus,currentUser,Snav,setSnav} = useContext(AuthContext);
@@ -11,6 +13,10 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+  const showSlider = useSelector((store) => store.nav.showSlider);
+
+  console.log(showSlider);
   useEffect(() =>{
     let handler = (e) =>{
       if(!navRef.current.contains(e.target)){
@@ -108,7 +114,7 @@ const Navbar = () => {
         {/* large screen end */}
 
         {/* for mobile screens  */}
-        <div className={`md:hidden ${Snav && 'hidden '} text-3xl text-teal-900`} onClick={() => {setSnav((prev) => !prev);}}  >
+        <div className={`md:hidden ${Snav && 'hidden '} text-3xl text-teal-900`} onClick={() => {setSnav((prev) => !prev); dispatch(setShowSlider(true))}}  >
           <HiMenu></HiMenu>
         </div>
 
@@ -123,6 +129,8 @@ const Navbar = () => {
                   {
                     loginStatus && <span>Hi,{` ${(currentUser?.name).split(" ")[0]}`}</span>
                   }
+
+                  {/* login status  */}
                   {!loginStatus && (
                     <span>
                       <Link to="/login">
@@ -137,6 +145,8 @@ const Navbar = () => {
                     </span>
                   )}
               </div>
+
+              {/* blog write button  */}
               <div>
               <span>
               <Link to="/write">
@@ -148,6 +158,8 @@ const Navbar = () => {
             </span>
               </div>
             </div>
+
+            {/* category buttons  */}
           <Link to="/?cat=art">
             <p>Art</p>
           </Link>

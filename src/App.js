@@ -7,6 +7,8 @@ import Register from './pages/Register';
 import Write from './pages/Write';
 import Singal from './pages/Singal';
 import {createBrowserRouter,Outlet,RouterProvider} from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './redux/store';
 const Layout = ()=>{
   return (<>
     <Navbar></Navbar>
@@ -46,7 +48,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className=" h-auto overflow-x-hidden filter backdrop:blur-md">
-      <RouterProvider router = {router}></RouterProvider>
+      <Provider store={store}>
+      <RouterProvider router = {router} />
+      </Provider>
     </div>
   );
 }
